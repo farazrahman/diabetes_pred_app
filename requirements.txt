@@ -4,3 +4,4 @@ streamlit
 sklearn
 matplotlib
 kaggle
+seaborn
