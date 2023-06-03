@@ -1,5 +1,6 @@
 import numpy as np
 import pandas as pd
+import joblib
 import matplotlib.pyplot as plt
 from imblearn.over_sampling import SMOTE
 from sklearn.preprocessing import LabelEncoder
@@ -50,6 +51,7 @@ def preprocess_data(data_str: str):
     return df
 
 
+# TODO: add doctring
 def augment_data(df: pd.DataFrame):
     """
     Augment the data using smote
@@ -70,6 +72,7 @@ def augment_data(df: pd.DataFrame):
     return resampled_df
 
 
+# TODO: add doctring
 def _evaluation_metrics(actuals, prediction, model, X_val):
     # Evaluate the classifier
     print(classification_report(actuals, prediction))
@@ -89,9 +92,9 @@ def _evaluation_metrics(actuals, prediction, model, X_val):
     plt.show()
 
 
+# TODO: add doctring
 def _predict_probabilities(model, X_val, y_val):
-
-    #calculate the probabilities of getting diabetes instead of just 0 or 1
+    # calculate the probabilities of getting diabetes instead of just 0 or 1
     probabilities = model.predict_proba(X_val).tolist()
 
     # add probabilities column in the test data set to check the predictions & probabilities side by side
@@ -105,6 +108,11 @@ def _predict_probabilities(model, X_val, y_val):
     validated_df = pd.concat(lst, axis=1)
     validated_df.drop(columns=['index'], inplace=True)
     print(validated_df)
+
+
+# TODO: add doctring
+def _save_model(model):
+    joblib.dump(model, 'rfc_model.pkl')
 
 
 def train_model(resampled_df: pd.DataFrame):
@@ -135,7 +143,10 @@ def train_model(resampled_df: pd.DataFrame):
     _evaluation_metrics(actuals=y_test, prediction=y_pred, model=rf_classifier, X_val=X_test)
 
     # predict probabilities
-    _predict_probabilities(model=rf_classifier, X_val=X_test,y_val=y_test)
+    _predict_probabilities(model=rf_classifier, X_val=X_test, y_val=y_test)
+
+    # save model
+    _save_model(model=rf_classifier)
 
 
 if __name__ == '__main__':
