@@ -42,10 +42,10 @@ def preprocess_data(data_str: str):
     label_encoder = LabelEncoder()
     df[categorical_cols] = df[categorical_cols].apply(lambda x: label_encoder.fit_transform(x))
 
-    # Scale the numeric columns
-    numeric_cols = ['bmi', 'HbA1c_level', 'blood_glucose_level']
-    scaler = StandardScaler()
-    df[numeric_cols] = scaler.fit_transform(df[numeric_cols])
+    # Scale the numeric columns(scaling is not required for random forest algorithm)
+    # numeric_cols = ['bmi', 'HbA1c_level', 'blood_glucose_level']
+    # scaler = StandardScaler()
+    # df[numeric_cols] = scaler.fit_transform(df[numeric_cols])
 
     print(df.info())
     return df
