@@ -61,14 +61,12 @@ def predict_diabetes(gender, hypertension, heart_disease, bmi, HbA1c_level, bloo
 
 st.title('Diabetes Prediction')
 
-st.header('Enter the mandatory categorical fields')
+st.header('Enter the mandatory fields')
 
 gender = st.selectbox('gender:', ['F', 'M'])
 hypertension = st.selectbox('hypertension:', ['Yes', 'No'])
 age_cat = st.selectbox('age_cat:', ['0-5', '6-12', '13-18', '19-30', '30-40', '40-50', '50-60', '>60'])
 heart_disease = st.selectbox('heart_disease:', ['No', 'Yes'])
-
-st.header('Enter the mandatory readings fields')
 bmi = st.number_input('bmi:', min_value=0, max_value=40, value=1)
 HbA1c_level = st.number_input('HbA1c_level:', min_value=0, max_value=15, value=1)
 blood_glucose_level = st.number_input('blood_glucose_level:', min_value=0, max_value=1000, value=1)
@@ -77,7 +75,7 @@ if st.button('Predict Diabetes'):
     hd, proba, fig = predict_diabetes(gender, hypertension, heart_disease, bmi, HbA1c_level, blood_glucose_level, age_cat)
     # print(hd, proba, fig)
     # st.success(f'The overall prediction is {hd[0]}')
-    st.success(f'You have around {round(proba[0][1], 2) * 100} percent chances of being diabetic')
+    st.success(f'You have around {round(proba[0][1], 2) * 100} % chances of being diabetic')
     st.success(f'Please consult your doctor before taking any medication')
 
     st.header('Legend')
