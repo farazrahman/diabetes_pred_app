@@ -32,9 +32,6 @@
 2. Create and run a docker file in the repository to containerize the streamlit app. 
 3. The Dockerfile has set of commands that will be executed sequentially to build a docker image for the streamlit application and using this image Docker will create a container for your application
 4. Once the Dockerfile is made, run the command ` docker build -t streamlit-app .`
-5. Check the newly built image `docker image ls`
-6. Once the image is built you can run the app in a container using the command; `docker run -p 8501:8501 streamlit-app` or `docker run -P streamlit-app`
-7. Check the containerized app in `http://localhost:8501/`
 
 #### Step 6: Launch an EC2 instance
 1. Generate key pair and get the Public DNS address
