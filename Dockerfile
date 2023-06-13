@@ -17,4 +17,5 @@ COPY . .
 EXPOSE 8501
 
 # Set the default command to run when the container starts
-CMD ["streamlit", "run", "--server.enableCORS", "false", "app.py"]
+#CMD ["streamlit", "run", "--server.enableCORS", "false", "app.py"]
+CMD ["streamlit", "run", "app.py"]
