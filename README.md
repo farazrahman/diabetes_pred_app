@@ -35,4 +35,12 @@
 5. Check the newly built image `docker image ls`
 6. Once the image is built you can run the app in a container using the command; `docker run -p 8501:8501 streamlit-app` or `docker run -P streamlit-app`
 7. Check the containerized app in `http://localhost:8501/`
-`
+
+#### Step 6: Launch an EC2 instance
+1. Generate key pair and get the Public DNS address
+2. Install docker in ec2 instance
+3. Install git on ec2 instance
+4. Clone the repo & change to the directory
+5. Build the docker image of streamlit app: `sudo docker build -t streamlit-app .`
+6. Run the Docker container: Start a Docker container using the built image, and map the desired port. 
+7. Use the following command: `sudo docker run -P streamlit-app` This will give you details of the https address where you can find your app.
