@@ -39,5 +39,12 @@
 3. Install git on ec2 instance
 4. Clone the repo & change to the directory
 5. Build the docker image of streamlit app: `sudo docker build -t streamlit-app .`
-6. Run the Docker container: Start a Docker container using the built image, and map the desired port. 
+6. Run the Docker container: Start a Docker container using the built image, and map the desired port using:`docker container run -p 8501:8501 -d streamlit-app`
 7. Use the following command: `sudo docker run -P streamlit-app` This will give you details of the https address where you can find your app.
+
+
+#### To restart the container follow:
+1. Start the EC2 instance- click on connect
+2. Copy the ssh and paste it into the project terminal & change to the project directory using cd diabetes_pred_app
+3. Start a Docker container using the built image, and map the desired port using:`docker container run -p 8501:8501 -d streamlit-app` (If successful this will give you an image code)
+4. To get the app link run : `sudo docker run -P streamlit-app`
