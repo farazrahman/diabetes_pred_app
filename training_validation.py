@@ -2,6 +2,7 @@ import numpy as np
 import pandas as pd
 import joblib
 import matplotlib.pyplot as plt
+import seaborn as sns
 from imblearn.over_sampling import SMOTE
 from sklearn.preprocessing import LabelEncoder
 from sklearn.preprocessing import StandardScaler
@@ -75,6 +76,7 @@ def augment_data(df: pd.DataFrame):
 # TODO: add doctring
 def _evaluation_metrics(actuals, prediction, model, X_val):
     # Evaluate the classifier
+    report= classification_report(actuals, prediction)
     print(classification_report(actuals, prediction))
 
     # plot confusion matrix
@@ -85,8 +87,13 @@ def _evaluation_metrics(actuals, prediction, model, X_val):
     plt.show()
 
     # plot the feature importances
+    # Set the desired figure width
+    fig_width = 12
+    # Create a bar plot with custom colors and adjusted figure size
+    plt.figure(figsize=(fig_width, fig_width * 0.6))
     fe = model.feature_importances_.argsort()
-    plt.barh(X_val.columns[fe], model.feature_importances_[fe])
+    colors = sns.color_palette("husl", len(fe))
+    plt.barh(X_val.columns[fe], model.feature_importances_[fe], color=colors)
     plt.xlabel("Feature Importance")
     plt.title('Feature Importance chart')
     plt.show()
@@ -145,8 +152,8 @@ def train_model(resampled_df: pd.DataFrame):
     # predict probabilities
     _predict_probabilities(model=rf_classifier, X_val=X_test, y_val=y_test)
 
-    # save model
-    _save_model(model=rf_classifier)
+    # # save model
+    # _save_model(model=rf_classifier)
 
 
 if __name__ == '__main__':
